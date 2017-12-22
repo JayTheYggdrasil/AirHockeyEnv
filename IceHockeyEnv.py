@@ -1,6 +1,6 @@
 from random import *
 
-Speed_Limit = 3
+Speed_Limit = 4
 def randInt( low, high ):
     return random( )*( high - low ) + low
 
@@ -29,10 +29,16 @@ class Paddle:
     def accelerate(self, dx, dy):
         self.dx+=dx
         self.dy+=dy
+        
         if self.dx > Speed_Limit:
             self.dx = Speed_Limit
+        if self.dx < Speed_Limit * -1:
+            self.dx = Speed_Limit * -1
+            
         if self.dy > Speed_Limit:
             self.dy = Speed_Limit
+        if self.dy < Speed_Limit * -1:
+            self.dy = Speed_Limit * -1
         
 class Ball:
     def __init__(self, x, y, game):
@@ -159,7 +165,7 @@ class Game:
         print(S)
         
 def test( ):
-    g = Game( [100,30] )
+    g = Game( [150,40] )
     g.step( [-5, 0,
              -5, 0] )
     while True:
